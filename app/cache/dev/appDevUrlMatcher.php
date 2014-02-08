@@ -136,7 +136,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // blog_blog_homepage
-        if ($pathinfo === '/blog') {
+        if ($pathinfo === '/listall') {
             return array (  '_controller' => 'Blog\\BlogBundle\\Controller\\DefaultController::indexAction',  '_route' => 'blog_blog_homepage',);
         }
 
@@ -146,20 +146,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->redirect($pathinfo.'/', '_welcome');
             }
 
-            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => '_welcome',);
+            return array (  '_controller' => 'Blog\\BlogBundle\\Controller\\DefaultController::indexAction',  '_route' => '_welcome',);
         }
 
-        if (0 === strpos($pathinfo, '/log')) {
-            // login_page
-            if ($pathinfo === '/login') {
-                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login_page',);
-            }
+        // login_page
+        if ($pathinfo === '/blog') {
+            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login_page',);
+        }
 
-            // logout_action
-            if ($pathinfo === '/logout') {
-                return array (  '_controller' => 'LoginLoginBundle:Page:logout',  '_route' => 'logout_action',);
-            }
-
+        // logout_action
+        if ($pathinfo === '/logout') {
+            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::logoutAction',  '_route' => 'logout_action',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

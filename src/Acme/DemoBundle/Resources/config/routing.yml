@@ -10,3 +10,6 @@ _demo:
     resource: "@AcmeDemoBundle/Controller/DemoController.php"
     type:     annotation
     prefix:   /demo
+test:
+    pattern: /test
+    defaults: { _controller: AcmeDemoBundle:Page:test }
